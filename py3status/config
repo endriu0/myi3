@@ -1,0 +1,57 @@
+#Bar order
+order += "clock"
+order += "weather_yahoo"
+order += "fedora_updates"
+order += "net_iplist"
+order += "diskdata"
+order += "uname"
+order += "volume_status"
+
+# reload the i3 config when I left click on the i3status time module
+# and restart i3 when I middle click on it
+clock {
+    on_click 1 = "reload"
+    on_click 2 = "restart"
+}
+
+# run wicd-gtk GUI when I left click on the i3status ethernet module
+# and kill it when I right click on it
+net_iplist {
+    iface_blacklist = ['lo','virbr0']
+    format_iface = "{iface}:[{ip4}]"
+    on_click 1 = "exec nm-applet"
+    on_click 3 = "exec killall nm-applet"
+}
+
+# run thunar when I left click on the / disk info module
+diskdata {
+    disk = "/dev/mapper/fedora_dhcp--149-home"
+    format = "/home:{used_percent}%"
+    on_click 1 = "exec pcmanfm"
+}
+# open an URL on firefox when I left click on the py3status weather_yahoo module
+weather_yahoo {
+    icon_rain = ''
+    icon_snow = ''
+    icon_sun = ':'
+    icon_cloud = ':'
+    cache_timeout = 7200
+    woeid = 560743
+    format_today = "Now: {icon} {temp}°{units} {text}" 
+    forecast_days = 2
+    on_click 1 = "exec vivaldi http://www.met.ie"
+}
+
+# Format of uname
+
+uname {
+	format = '{release}'
+}
+
+#Volume status onclick
+
+volume_status {
+	button_up = 4
+	button_down = 5
+	button_mute = 2
+}
